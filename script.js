@@ -1,28 +1,40 @@
-function fibonacci(n) {
-    const matrix = [[1, 1], [1, 0]];
+function fibonacci(n)
+{
+    var F = [ [ 1, 1 ], [ 1, 0 ] ];
+    if (n == 0)
+        return 0;
+        
+    power(F, n - 1);
 
-    function multiply(m1, m2) {
-        return [
-            [m1[0][0] * m2[0][0] + m1[0][1] * m2[1][0], m1[0][0] * m2[0][1] + m1[0][1] * m2[1][1]],
-            [m1[1][0] * m2[0][0] + m1[1][1] * m2[1][0], m1[1][0] * m2[0][1] + m1[1][1] * m2[1][1]]
-        ];
-    }
+    return F[0][0];
+}
 
-    function power(matrix, n) {
-        if (n === 1) return matrix;
-        if (n % 2 === 0) {
-            const halfPower = power(matrix, n / 2);
-            return multiply(halfPower, halfPower);
-        } else {
-            return multiply(matrix, power(matrix, n - 1));
-        }
-    }
+function multiply(F, M)
+{
+    var x = F[0][0] * M[0][0] + F[0][1] * M[1][0];
+    var y = F[0][0] * M[0][1] + F[0][1] * M[1][1];
+    var z = F[1][0] * M[0][0] + F[1][1] * M[1][0];
+    var w = F[1][0] * M[0][1] + F[1][1] * M[1][1];
 
-    if (n === 0) return 0;
-    if (n === 1) return 1;
+    F[0][0] = x;
+    F[0][1] = y;
+    F[1][0] = z;
+    F[1][1] = w;
+}
 
-    const resultMatrix = power(matrix, n - 1);
-    return resultMatrix[0][0];
+// Optimized version of power() in method 4 */
+function power(F, n) 
+{
+    if (n == 0 || n == 1)
+        return;
+        
+    var M = [ [ 1, 1 ], [ 1, 0 ] ];
+
+    power(F, n / 2);
+    multiply(F, F);
+
+    if (n % 2 != 0)
+        multiply(F, M);
 }
 
 module.exports = fibonacci;
