@@ -4,7 +4,8 @@ function fibonacci(n)
 	let c;
 	let i;
 
-    if( n == 1)
+	
+    if( n == 1 || num == 0)
         return a;
 	else if (n==2)
 		return b;
