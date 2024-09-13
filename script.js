@@ -1,5 +1,9 @@
 function fibonacci(n)
-	let a = 0, b = 1, c, i;
+	let a = 0;
+	let b = 1;
+	let c;
+	let i;
+
     if( n == 1)
         return a;
 	else if (n==2)
