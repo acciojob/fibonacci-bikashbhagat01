@@ -1,8 +1,11 @@
 function fibonacci(n)
 	let a = 0, b = 1, c, i;
-    if( n == 0)
+    if( n == 1)
         return a;
-    for(i = 2; i <= n; i++)
+	else if (n==2)
+		return b;
+
+    for(i = 3; i <= n; i++)
     {
 	    c = a + b;
 	    a = b;
